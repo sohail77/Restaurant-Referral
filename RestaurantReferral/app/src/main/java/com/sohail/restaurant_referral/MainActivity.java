@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    Button logoutBtn,shareBtn;
+    ImageView logoutBtn,shareBtn;
     private FirebaseAuth mAuth;
     RecyclerView rv;
     ArrayList<RestaurantModel> list=new ArrayList<>();

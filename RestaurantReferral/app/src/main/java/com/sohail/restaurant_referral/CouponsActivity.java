@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -18,19 +20,26 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+import com.sohail.restaurant_referral.Adapters.CouponAdpater;
+import com.sohail.restaurant_referral.Models.CouponModel;
+
+import java.util.ArrayList;
 
 public class CouponsActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ImageView shareImg;
     private FirebaseAuth mAuth;
     String code;
+    RecyclerView couponRv;
+    CouponAdpater adpater;
+    ArrayList<CouponModel> list=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share);
-        shareImg=findViewById(R.id.shareImg);
+        setContentView(R.layout.activity_coupon);
+        couponRv=findViewById(R.id.couponRv);
+        couponRv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -40,20 +49,23 @@ public class CouponsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                code=document.getString("code");
-                                Log.e("data", document.getId() + " => " + document.getString("code"));
+                            list=new ArrayList<>();
 
-                                MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-                                try {
-                                    BitMatrix bitMatrix = multiFormatWriter.encode(code, BarcodeFormat.QR_CODE,300,300);
-                                    BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-                                    Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-                                    shareImg.setImageBitmap(bitmap);
-                                } catch (WriterException e) {
-                                    e.printStackTrace();
-                                }
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                CouponModel model=new CouponModel();
+                                model.setCode(document.getString("code"));
+                                model.setFromEmail(document.getString("fromEmail"));
+                                model.setToEmail(document.getString("toEmail"));
+                                model.setPlace(document.getString("place"));
+                                list.add(model);
+
+                                Log.e("data", document.getId() + " => " + document.getString("code"));
                             }
+
+                            adpater=new CouponAdpater(CouponsActivity.this,list);
+                            couponRv.setAdapter(adpater);
+
+
                         } else {
                             Log.e("Not hello", "Error getting documents.", task.getException());
                         }

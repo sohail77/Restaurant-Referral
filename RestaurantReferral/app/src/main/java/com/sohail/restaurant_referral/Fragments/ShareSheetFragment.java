@@ -109,6 +109,7 @@ public class ShareSheetFragment extends BottomSheetDialogFragment {
                                             coupon.put("code", email + "/" + mAuth.getCurrentUser().getEmail());
                                             coupon.put("fromEmail", mAuth.getCurrentUser().getEmail());
                                             coupon.put("toEmail", shareEmail.getText().toString());
+                                            coupon.put("place",act.name);
                                             db2.collection("Coupons")
                                                     .add(coupon)
                                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

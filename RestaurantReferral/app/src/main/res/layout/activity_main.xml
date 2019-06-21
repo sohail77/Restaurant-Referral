@@ -4,29 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5C6BC0"
+    android:background="#ECEFF1"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end">
+        android:orientation="horizontal">
 
-
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="logout"
-            android:id="@+id/logout"
+            android:text="Restaurants"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
             />
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="shareBtn"
-            android:id="@+id/share"
-            />
+            android:gravity="end">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:text="shareBtn"
+                android:src="@drawable/coupon_img"
+                android:layout_margin="10dp"
+                android:id="@+id/share"
+                />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:text="logout"
+                android:src="@drawable/logout_img"
+                android:layout_margin="10dp"
+                android:id="@+id/logout"
+                />
+
+        </LinearLayout>
+
     </LinearLayout>
+
+
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

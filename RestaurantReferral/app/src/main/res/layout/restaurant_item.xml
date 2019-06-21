@@ -6,7 +6,7 @@
     android:layout_gravity="center"
     android:layout_margin="20dp"
     app:cardCornerRadius="9dp"
-    app:cardElevation="40dp">
+    app:cardElevation="2dp">
 
     <FrameLayout
         android:layout_width="match_parent"

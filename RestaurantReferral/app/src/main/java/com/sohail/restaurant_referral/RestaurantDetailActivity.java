@@ -21,6 +21,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Share
     FloatingActionButton fab;
     CollapsingToolbarLayout collapsingToolbar;
    public String email,phone;
+   public String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Share
         detailImg=findViewById(R.id.detailImg);
         collapsingToolbar=findViewById(R.id.collapsing_bar);
         email=getIntent().getStringExtra("email");
+        name=getIntent().getStringExtra("name");
         collapsingToolbar.setTitle(getIntent().getStringExtra("name"));
         Glide.with(this).load(getIntent().getStringExtra("image")).into(detailImg);
         descTxt.setText(getIntent().getStringExtra("desc"));
