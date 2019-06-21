@@ -1,18 +1,36 @@
 package com.sohail.restaurant_referral.Models;
 
 public class RestaurantModel {
-    String name,description,imageUrl;
+    String name,description,imageUrl,phone,email;
     Double lat,lon;
 
     public RestaurantModel() {
     }
 
-    public RestaurantModel(String name, String description, String imageUrl, Double lat, Double lon) {
+    public RestaurantModel(String name, String description, String imageUrl, String phone, String email, Double lat, Double lon) {
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
+        this.phone = phone;
+        this.email = email;
         this.lat = lat;
         this.lon = lon;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {

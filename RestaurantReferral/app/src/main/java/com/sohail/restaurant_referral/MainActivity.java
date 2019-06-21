@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                                 model.setName(document.getString("name"));
                                 model.setDescription(document.getString("description"));
                                 model.setImageUrl(document.getString("image"));
+                                model.setEmail(document.getString("email"));
+                                model.setPhone(document.getString("phone"));
                                 GeoPoint g=document.getGeoPoint("location");
                                 model.setLat(g.getLatitude());
                                 model.setLon(g.getLongitude());

@@ -53,6 +53,8 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
                 intent.putExtra("image",list.get(pos).getImageUrl());
                 intent.putExtra("lat",list.get(pos).getLat());
                 intent.putExtra("lon",list.get(pos).getLon());
+                intent.putExtra("phone",list.get(pos).getPhone());
+                intent.putExtra("email",list.get(pos).getEmail());
                 context.startActivity(intent);
             }
         });
