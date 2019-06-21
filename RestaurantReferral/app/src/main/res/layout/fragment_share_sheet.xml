@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.ShareSheetFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -16,12 +17,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter email address"
+            android:text="Enter email address to share with"
             android:textSize="18sp"
             android:textColor="@android:color/black"
             android:layout_margin="20dp"
 
             />
+
 
         <EditText
             android:layout_width="match_parent"
@@ -30,12 +32,16 @@
             android:layout_margin="20dp"
             android:hint="Email"/>
 
-        <Button
+        <android.support.design.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/sendBtn"
             android:text="Share"
-            android:layout_gravity="center"/>
+            app:icon="@drawable/ic_share_black_24dp"
+            app:cornerRadius="30dp"
+            android:backgroundTint="#5C6BC0"
+            android:layout_gravity="center"
+            android:layout_marginBottom="60dp"/>
 
 
 
