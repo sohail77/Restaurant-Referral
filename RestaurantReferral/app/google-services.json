@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "689661663774",
+    "firebase_url": "https://restaurant-referral.firebaseio.com",
+    "project_id": "restaurant-referral",
+    "storage_bucket": "restaurant-referral.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689661663774:android:13a6cec913362ac0",
+        "android_client_info": {
+          "package_name": "com.sohail.restaurant_referral"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "689661663774-e7a37jbm9kh3p3mqf96l6ec00fokd9ej.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sohail.restaurant_referral",
+            "certificate_hash": "8cb6abec7e6e92fbb4f2b3ea9b46f5357447196d"
+          }
+        },
+        {
+          "client_id": "689661663774-a6u178qdt92ucqf36ns99bmq1ddl42nh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfpUhYTJttm6KJxbKgHkEyG-9SxzoNP8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689661663774-a6u178qdt92ucqf36ns99bmq1ddl42nh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
