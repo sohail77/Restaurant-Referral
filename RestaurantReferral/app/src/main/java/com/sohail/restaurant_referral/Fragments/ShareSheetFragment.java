@@ -4,7 +4,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.button.MaterialButton;
 import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -45,7 +47,7 @@ public class ShareSheetFragment extends BottomSheetDialogFragment {
     private String mParam2;
 
     EditText shareEmail;
-    Button shareBtn;
+    MaterialButton shareBtn;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseFirestore db2 = FirebaseFirestore.getInstance();
     RestaurantDetailActivity act;
