@@ -53,6 +53,7 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
@@ -83,15 +84,42 @@
                 android:layout_margin="10dp"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/whatYouGet"
+                android:text="What you Get"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/wygtDesc"
+                android:text="@string/wygtDesc"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:layout_margin="10dp"
+                />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/callLayout"
                     android:orientation="vertical">
 
                     <ImageView
@@ -112,7 +140,30 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/directionLayout"
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_navigation_blue_grey_900_48dp"
+                        android:layout_gravity="center"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Directions"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:gravity="center"/>
+
+
+                </LinearLayout>
 
 
             </LinearLayout>
