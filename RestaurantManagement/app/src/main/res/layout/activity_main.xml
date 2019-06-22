@@ -8,13 +8,18 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
-    <Button
+    <android.support.design.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Scan"
         android:id="@+id/scanBtn"
         />
 
+    <android.support.design.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="upload Image"
+        android:id="@+id/uploadBtn"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

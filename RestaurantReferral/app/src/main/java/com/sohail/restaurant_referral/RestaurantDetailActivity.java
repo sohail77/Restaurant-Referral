@@ -10,6 +10,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,7 +19,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.sohail.restaurant_referral.Adapters.MenuAdapter;
 import com.sohail.restaurant_referral.Fragments.ShareSheetFragment;
+
+import java.util.ArrayList;
 
 public class RestaurantDetailActivity extends AppCompatActivity implements ShareSheetFragment.OnFragmentInteractionListener {
 
@@ -30,7 +40,11 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Share
     public String email, phone;
     public String name;
     double lat,lon;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    RecyclerView galleryRv;
+    MenuAdapter adapter;
     Boolean isPermissionGiven=false;
+    ArrayList<String> galleryList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +61,8 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Share
         collapsingToolbar = findViewById(R.id.collapsing_bar);
         callLayout = findViewById(R.id.callLayout);
         directionLayout = findViewById(R.id.directionLayout);
+        galleryRv=findViewById(R.id.galleryRv);
+        galleryRv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
 
 
         email = getIntent().getStringExtra("email");
@@ -57,6 +73,26 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Share
         collapsingToolbar.setTitle(getIntent().getStringExtra("name"));
         Glide.with(this).load(getIntent().getStringExtra("image")).into(detailImg);
         descTxt.setText(getIntent().getStringExtra("desc"));
+
+
+
+        db.collection("Images").whereEqualTo("name",name)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot document : task.getResult()){
+                                galleryList.add(document.getString("image"));
+
+                            }
+
+                            adapter=new MenuAdapter(RestaurantDetailActivity.this,galleryList);
+                            galleryRv.setAdapter(adapter);
+                        }
+                    }
+                });
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
