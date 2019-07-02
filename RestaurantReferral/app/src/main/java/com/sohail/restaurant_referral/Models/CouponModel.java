@@ -3,6 +3,7 @@ package com.sohail.restaurant_referral.Models;
 public class CouponModel {
 
     String code,fromEmail,toEmail,place;
+    boolean isUsed;
 
     public CouponModel() {
     }
@@ -13,6 +14,14 @@ public class CouponModel {
 
     public void setPlace(String place) {
         this.place = place;
+    }
+
+    public boolean isUsed() {
+        return isUsed;
+    }
+
+    public void setUsed(boolean used) {
+        isUsed = used;
     }
 
     public String getCode() {

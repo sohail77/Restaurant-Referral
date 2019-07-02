@@ -26,9 +26,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     MaterialButton scanBtn, uploadBtn;
     TextView txt;
-    ArrayList<String> list = new ArrayList<>();
+    ArrayList<CouponVerificationModel> list = new ArrayList<>();
     private FirebaseAuth mAuth;
     String name;
     String pictureFilePath;
@@ -163,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
 
-                db.collection("Coupons")
+                db.collection("Coupons").whereEqualTo("isUsed",false)
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
@@ -172,19 +174,34 @@ public class MainActivity extends AppCompatActivity {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
 
                                         String[] parts = document.getString("code").split("/");
-                                        String part1 = parts[0]; // 004
+                                        Log.e("Hellooooooooo",document.getId());
+                                        String part1 = parts[0];
                                         String part2 = parts[1];
                                         if (part1.equals(mAuth.getCurrentUser().getEmail())) {
-                                            list.add(document.getString("code"));
+                                            CouponVerificationModel model=new CouponVerificationModel();
+                                            model.code=document.getString("code");
+                                            model.id=document.getId();
+                                            list.add(model);
                                         }
                                     }
-                                    if (list.contains(result.getContents())) {
-                                        txt.setText("Verified");
-                                        Toast.makeText(MainActivity.this, result.getContents(), Toast.LENGTH_LONG).show();
-
-                                    } else {
-                                        txt.setText("Invalid Coupon");
+                                    boolean isValid=false;
+                                    for(int i=0;i<list.size();i++){
+                                        if(list.get(i).code.equals(result.getContents())){
+                                            HashMap<Object,Boolean> map=new HashMap<>();
+                                            map.put("isUsed",true);
+                                            db.collection("Coupons").document(list.get(i).id)
+                                                    .set(map,SetOptions.merge());
+                                            txt.setText("Verified");
+                                            Toast.makeText(MainActivity.this, result.getContents(), Toast.LENGTH_LONG).show();
+                                            isValid=true;
+                                            return;
+                                        }
                                     }
+
+                                    if(!isValid){
+                                         txt.setText("Invalid Coupon");
+                                    }
+
                                 } else {
                                     Log.e("Not hello", "Error getting documents.", task.getException());
                                 }
@@ -273,59 +290,6 @@ public class MainActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
     }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        list = new ArrayList<>();
-//
-//        if (requestCode == 2 && resultCode == RESULT_OK) {
-//
-//            uploadImg();
-//
-//
-//        }
-//        final IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-//        if (result != null) {
-//            if (result.getContents() == null) {
-//                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-//            } else {
-//
-//                db.collection("Coupons")
-//                        .get()
-//                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                                if (task.isSuccessful()) {
-//                                    for (QueryDocumentSnapshot document : task.getResult()) {
-//
-//                                        String[] parts = document.getString("code").split("/");
-//                                        String part1 = parts[0]; // 004
-//                                        String part2 = parts[1];
-//                                        if (part1.equals(mAuth.getCurrentUser().getEmail())) {
-//                                            list.add(document.getString("code"));
-//                                        }
-//                                    }
-//                                    if (list.contains(result.getContents())) {
-//                                        txt.setText("Verified");
-//                                        Toast.makeText(MainActivity.this, result.getContents(), Toast.LENGTH_LONG).show();
-//
-//                                    } else {
-//                                        txt.setText("Invalid Coupon");
-//                                    }
-//                                } else {
-//                                    Log.e("Not hello", "Error getting documents.", task.getException());
-//                                }
-//                            }
-//                        });
-//
-//            }
-//        }  else {
-//            super.onActivityResult(requestCode, resultCode, data);
-//        }
-//
-//
-//    }
 
 }
 

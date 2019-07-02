@@ -3,7 +3,7 @@
     package="com.sohail.restaurant_referral">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -12,8 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RestaurantDetailActivity"
-            ></activity>
+        <activity android:name=".CouponHistoryActivity"></activity>
+        <activity android:name=".RestaurantDetailActivity" />
         <activity android:name=".CouponsActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

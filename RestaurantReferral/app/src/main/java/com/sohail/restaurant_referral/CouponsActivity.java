@@ -1,5 +1,6 @@
 package com.sohail.restaurant_referral;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,17 +35,19 @@ public class CouponsActivity extends AppCompatActivity {
     RecyclerView couponRv;
     CouponAdpater adpater;
     ArrayList<CouponModel> list=new ArrayList<>();
+    ImageView historyImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coupon);
         couponRv=findViewById(R.id.couponRv);
+        historyImg=findViewById(R.id.historyImg);
         couponRv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         mAuth = FirebaseAuth.getInstance();
 
 
-        db.collection("Coupons").whereEqualTo("toEmail",mAuth.getCurrentUser().getEmail())
+        db.collection("Coupons").whereEqualTo("toEmail",mAuth.getCurrentUser().getEmail()).whereEqualTo("isUsed",false)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -71,6 +75,14 @@ public class CouponsActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+        historyImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CouponsActivity.this, CouponHistoryActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 }
