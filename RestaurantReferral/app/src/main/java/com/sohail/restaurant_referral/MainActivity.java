@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 mAuth.signOut();
                 Intent i =new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(i);
+                finish();
             }
         });
 
