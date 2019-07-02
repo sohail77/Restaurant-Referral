@@ -1,4 +1,4 @@
-package com.sohail.restaurant_referral.Models;
+package com.sohail.myapplication.Model;
 
 public class CouponModel {
 

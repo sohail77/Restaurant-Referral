@@ -48,7 +48,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    MaterialButton scanBtn, uploadBtn;
+    MaterialButton scanBtn, uploadBtn,historyBtn;
     TextView txt;
     ArrayList<CouponVerificationModel> list = new ArrayList<>();
     private FirebaseAuth mAuth;
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         scanBtn = findViewById(R.id.scanBtn);
         txt = findViewById(R.id.txt);
         uploadBtn = findViewById(R.id.uploadBtn);
+        historyBtn=findViewById(R.id.historyBtn);
         mAuth = FirebaseAuth.getInstance();
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
@@ -106,6 +107,14 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     openCamera();
                 }
+            }
+        });
+
+        historyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(MainActivity.this,CouponHistoryActivity.class);
+                startActivity(i);
             }
         });
     }
@@ -174,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
 
                                         String[] parts = document.getString("code").split("/");
-                                        Log.e("Hellooooooooo",document.getId());
                                         String part1 = parts[0];
                                         String part2 = parts[1];
                                         if (part1.equals(mAuth.getCurrentUser().getEmail())) {

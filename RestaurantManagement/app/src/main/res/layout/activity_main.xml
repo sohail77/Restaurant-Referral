@@ -5,26 +5,144 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+
     tools:context=".MainActivity">
 
-    <android.support.design.button.MaterialButton
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Scan"
-        android:id="@+id/scanBtn"
-        />
+        android:orientation="horizontal">
 
-    <android.support.design.button.MaterialButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="upload Image"
-        android:id="@+id/uploadBtn"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Dashboard"
+            android:layout_weight="2"
+            android:textSize="25sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="20dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            />
+
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txt"
         android:layout_margin="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
         />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="30dp">
+
+        <android.support.design.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            app:cardElevation="4dp"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Scan to Verify Coupon"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    />
+
+                <android.support.design.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Scan"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="40dp"
+                    android:backgroundTint="@color/colorTheme"
+                    app:cornerRadius="30dp"
+                    android:id="@+id/scanBtn"
+                    />
+
+
+            </LinearLayout>
+
+        </android.support.design.card.MaterialCardView>
+
+        <android.support.design.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Click to upload Images"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    />
+
+                <android.support.design.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="40dp"
+                    android:backgroundTint="@color/colorTheme"
+                    app:cornerRadius="30dp"
+                    android:text="upload Image"
+                    android:id="@+id/uploadBtn"/>
+
+
+            </LinearLayout>
+
+        </android.support.design.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+
+
+
+    <android.support.design.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="history"
+        android:backgroundTint="@color/colorTheme"
+        app:cornerRadius="30dp"
+        app:icon="@drawable/ic_history_white_24dp"
+        android:id="@+id/historyBtn"
+        android:layout_gravity="center"
+        />
+
+
+
 
 </LinearLayout>

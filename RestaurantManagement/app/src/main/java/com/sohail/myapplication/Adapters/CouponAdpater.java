@@ -1,4 +1,4 @@
-package com.sohail.restaurant_referral.Adapters;
+package com.sohail.myapplication.Adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,8 +15,9 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
-import com.sohail.restaurant_referral.Models.CouponModel;
-import com.sohail.restaurant_referral.R;
+import com.sohail.myapplication.Model.CouponModel;
+import com.sohail.myapplication.R;
+
 
 import java.util.ArrayList;
 
@@ -41,8 +42,7 @@ public class CouponAdpater extends RecyclerView.Adapter<CouponAdpater.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull CouponAdpater.ViewHolder viewHolder, int i) {
 
-        viewHolder.forTxt.setText("For: " + list.get(i).getPlace());
-        viewHolder.fromTxt.setText("From: " + list.get(i).getFromEmail());
+        viewHolder.usedByTxt.setText("Used By: " + list.get(i).getToEmail());
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
@@ -62,12 +62,11 @@ public class CouponAdpater extends RecyclerView.Adapter<CouponAdpater.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView fromTxt,forTxt;
+        TextView usedByTxt;
         ImageView couponImg;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            fromTxt=itemView.findViewById(R.id.fromTxt);
-            forTxt=itemView.findViewById(R.id.forTxt);
+            usedByTxt=itemView.findViewById(R.id.forTxt);
             couponImg=itemView.findViewById(R.id.couponImg);
         }
     }
