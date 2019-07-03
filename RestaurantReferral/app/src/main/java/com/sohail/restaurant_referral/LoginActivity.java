@@ -2,12 +2,16 @@ package com.sohail.restaurant_referral;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.button.MaterialButton;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,9 +22,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText loginEdit,passwordEdit;
-    Button loginBtn;
+    TextInputEditText loginEdit,passwordEdit;
+    MaterialButton loginBtn;
     private FirebaseAuth mAuth;
+    TextView loginTxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         loginEdit=findViewById(R.id.loginEmail);
         passwordEdit=findViewById(R.id.loginPass);
         loginBtn=findViewById(R.id.loginBtn);
+        loginTxt=findViewById(R.id.newUserTxt);
         mAuth = FirebaseAuth.getInstance();
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,21 +64,27 @@ public class LoginActivity extends AppCompatActivity {
                                     // ...
                                 }
                             });
+                }else{
+                    Toast.makeText(LoginActivity.this, "Please fill in all the fields",
+                            Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        loginTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(LoginActivity.this,SignUpActivity.class);
+                startActivity(i);
+                finish();
             }
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser!=null)
-            updateUI();
-    }
 
     public void updateUI(){
         Intent i= new Intent(LoginActivity.this,MainActivity.class);
         startActivity(i);
+        finish();
     }
 }

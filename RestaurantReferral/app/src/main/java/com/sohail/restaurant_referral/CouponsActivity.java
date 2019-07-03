@@ -2,6 +2,7 @@ package com.sohail.restaurant_referral;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.button.MaterialButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,7 +30,8 @@ public class CouponsActivity extends AppCompatActivity {
     RecyclerView couponRv;
     CouponAdpater adpater;
     ArrayList<CouponModel> list=new ArrayList<>();
-    ImageView historyImg;
+    ImageView backImg;
+    MaterialButton historyImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class CouponsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_coupon);
         couponRv=findViewById(R.id.couponRv);
         historyImg=findViewById(R.id.historyImg);
+        backImg=findViewById(R.id.backImg);
         couponRv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         mAuth = FirebaseAuth.getInstance();
 
@@ -75,6 +78,13 @@ public class CouponsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(CouponsActivity.this, CouponHistoryActivity.class);
                 startActivity(i);
+            }
+        });
+
+        backImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 

@@ -53,7 +53,17 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Share
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fab = findViewById(R.id.fab);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_36dp);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                finish();
+            }
+        });
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         nameTxt = findViewById(R.id.nameTxt);
         descTxt = findViewById(R.id.descTxt);
