@@ -36,12 +36,14 @@ public class CouponHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coupon_history);
 
+        //set up the xml views
         couponRv=findViewById(R.id.couponRv);
         backImg=findViewById(R.id.backImg);
         couponRv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         mAuth = FirebaseAuth.getInstance();
 
 
+        //get all the used coupons
         db.collection("Coupons").whereEqualTo("isUsed",true)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -52,6 +54,7 @@ public class CouponHistoryActivity extends AppCompatActivity {
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
+                                //check which are the coupons for this restaurant
                                 String[] parts = document.getString("code").split("/");
                                 String part1 = parts[0];
                                 String part2 = parts[1];
@@ -61,17 +64,15 @@ public class CouponHistoryActivity extends AppCompatActivity {
                                     model.setFromEmail(document.getString("fromEmail"));
                                     model.setToEmail(document.getString("toEmail"));
                                     model.setPlace(document.getString("place"));
+                                    //add them all to a list
                                     list.add(model);
 
                                 }
                             }
 
+                            //update a recyler view with all the coupons
                             adpater=new CouponAdpater(CouponHistoryActivity.this,list);
                             couponRv.setAdapter(adpater);
-
-
-                        } else {
-                            Log.e("Not hello", "Error getting documents.", task.getException());
                         }
                     }
                 });

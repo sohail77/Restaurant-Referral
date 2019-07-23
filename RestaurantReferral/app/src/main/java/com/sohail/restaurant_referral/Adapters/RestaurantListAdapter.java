@@ -14,14 +14,13 @@ import com.bumptech.glide.Glide;
 import com.sohail.restaurant_referral.Models.RestaurantModel;
 import com.sohail.restaurant_referral.R;
 import com.sohail.restaurant_referral.RestaurantDetailActivity;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.ViewHolder> {
 
     Context context;
+
+    //This list will contain the data regarding the restaurant
     ArrayList<RestaurantModel> list=new ArrayList<>();
 
 
@@ -40,9 +39,14 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
     @Override
     public void onBindViewHolder(@NonNull final RestaurantListAdapter.ViewHolder viewHolder, int i) {
+
+        //load the images using Glide library
         Glide.with(context).load(list.get(i).getImageUrl()).into(viewHolder.restImg);
+
+        //get the name of the restaurant from the list
         viewHolder.restTxt.setText(list.get(i).getName());
 
+        //when an item is clicked send the data to the detailActivity
         viewHolder.restTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +75,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         TextView restTxt;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            //set up views of the xml
             restImg=itemView.findViewById(R.id.restImg);
             restTxt=itemView.findViewById(R.id.restName);
         }

@@ -16,6 +16,8 @@ import java.util.ArrayList;
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
     Context context;
+
+    //this list will contain the urls of the menu images.
     ArrayList<String> list=new ArrayList<>();
 
     public MenuAdapter(Context context, ArrayList<String> list) {
@@ -32,6 +34,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MenuAdapter.ViewHolder viewHolder, int i) {
+
+        //load the images of menu using the Glide library
         Glide.with(context).load(list.get(i)).into(viewHolder.menuImg);
     }
 
@@ -45,6 +49,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         ImageView menuImg;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            //set up the xml views
             menuImg=itemView.findViewById(R.id.menuImg);
         }
     }

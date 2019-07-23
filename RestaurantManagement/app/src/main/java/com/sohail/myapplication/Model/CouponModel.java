@@ -2,6 +2,9 @@ package com.sohail.myapplication.Model;
 
 public class CouponModel {
 
+    //this is a model class for coupons
+    // below variables shows all the data a coupon will contain.
+
     String code,fromEmail,toEmail,place;
     boolean isUsed;
 

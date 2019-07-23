@@ -24,6 +24,8 @@ import java.util.ArrayList;
 public class CouponAdpater extends RecyclerView.Adapter<CouponAdpater.ViewHolder> {
 
     Context context;
+
+    //this list contains all the data of coupons
     ArrayList<CouponModel> list=new ArrayList<>();
 
 
@@ -42,8 +44,10 @@ public class CouponAdpater extends RecyclerView.Adapter<CouponAdpater.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull CouponAdpater.ViewHolder viewHolder, int i) {
 
+        //add coupon details to views
         viewHolder.usedByTxt.setText("Used By: " + list.get(i).getToEmail());
 
+        //create QR code based on the coupon data using the ZXing library
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
             BitMatrix bitMatrix = multiFormatWriter.encode(list.get(i).getCode(), BarcodeFormat.QR_CODE,200,200);
@@ -66,6 +70,8 @@ public class CouponAdpater extends RecyclerView.Adapter<CouponAdpater.ViewHolder
         ImageView couponImg;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            //setting up the xml views
             usedByTxt=itemView.findViewById(R.id.forTxt);
             couponImg=itemView.findViewById(R.id.couponImg);
         }

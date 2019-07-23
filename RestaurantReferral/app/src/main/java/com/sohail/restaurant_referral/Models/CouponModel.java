@@ -2,6 +2,8 @@ package com.sohail.restaurant_referral.Models;
 
 public class CouponModel {
 
+    //This is a model class for coupons.
+    //below variables represent all the different data a coupon will contain.
     String code,fromEmail,toEmail,place;
     boolean isUsed;
 

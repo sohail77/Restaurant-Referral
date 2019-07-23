@@ -26,6 +26,33 @@
             android:textColor="@android:color/black"
             />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:text="logout"
+                android:src="@drawable/logout_img"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:id="@+id/logout"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Logout"
+                android:layout_marginBottom="15dp"
+
+                />
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <TextView

@@ -27,24 +27,56 @@
             android:layout_height="wrap_content"
             android:gravity="end">
 
-            <ImageView
-                android:layout_width="30dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="shareBtn"
-                android:src="@drawable/coupon_img"
-                android:layout_margin="10dp"
-                android:id="@+id/share"
-                />
+                android:orientation="vertical"
+                android:id="@+id/couponLayout"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="15dp">
 
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:text="shareBtn"
+                    android:src="@drawable/coupon_img"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:id="@+id/share"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Coupons"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/logoutLayout"
+                android:orientation="vertical">
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:text="logout"
                 android:src="@drawable/logout_img"
-                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:id="@+id/logout"
                 />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Logout"
 
+                    />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
@@ -59,4 +91,31 @@
 
 
     </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/please_check_your_internet_connection"
+        android:textStyle="bold"
+        android:id="@+id/noConnectionTxt"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:visibility="gone"
+        android:textSize="25sp"
+        />
+
+    <android.support.design.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/noConnectionBtn"
+        android:text="@string/retry"
+        android:visibility="gone"
+        android:backgroundTint="@color/colorTheme"
+        app:icon="@drawable/ic_sync_white_24dp"
+        />
 </LinearLayout>

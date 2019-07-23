@@ -12,7 +12,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/cover_img"
+        android:id="@+id/coverImg"
         android:scaleType="centerCrop"
         />
 
@@ -25,12 +25,12 @@
 
 
     <android.support.design.card.MaterialCardView
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="450dp"
         android:layout_gravity="center"
         android:elevation="8dp"
         android:id="@+id/card"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="1dp">
 
 
         <LinearLayout
@@ -66,6 +66,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:id="@+id/loginPass"
                 android:hint="password"
+                android:inputType="textPassword"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 />
@@ -80,6 +81,15 @@
                 app:cornerRadius="30dp"
                 android:id="@+id/SignUpBtn"
                 android:layout_marginTop="20dp"
+                />
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme.progresscolor"
+                android:layout_margin="10dp"
+                android:visibility="gone"
+                android:id="@+id/loader"
                 />
 
             <TextView
