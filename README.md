@@ -45,15 +45,28 @@ Features for customer application
 
 ## Libraries
 
-Provide a list of **ALL** the libraries you used for your project. This should include
-sources of any clip art, icons, etc. Example:
-
 **ZXing:** ZXing is a Java library that is used for barcode image processing. It has support for 2D Barcodes, 1D industrial and  1D product(https://github.com/zxing/zxing)
+
+**Glide:** Glide is an efficient and fast image loading library for Android. It also provides support for GIF and handles image caching.(https://github.com/bumptech/glide)
+
 
 ## Requirements
 
-List hardware or system requirements (e.g., Android 5.0, GPS access) needed to run your software.
+Minimum Requirements:
 
+Android 6.0.
+Internet connection.
+
+//for restaurant application.
+Camera Access.
+
+Permission Required for extra functionality.
+
+permissions to make a phone call.
+permissions to access GPS.
+permissions to access device Camera.
+permissions to Write to external storage.
+permissions to read from external storage.
 
 ## Installation Notes
 
@@ -63,9 +76,10 @@ One is restaurants application apk and second is customer application apk.
 
 ## Final Project Status
 
-We have finished all our tasks mentioned in our project contract and project proposal. We have also polished and tested our application. Implementation of all the minimum, expected and bonus functionality have been done.
-
-If the project would have been continued, our next step would have been payment integration. A user wallet would be created where user can add money in the wallet and once coupon is verified payment will be automatically deleted from the wallet. 
+We have finished all our tasks mentioned in our project contract and project proposal. We have also polished and tested our application. 
+Implementation of all the minimum, expected and bonus functionality have been done.
+If the project would have been continued, our next step would have been payment integration. 
+A user wallet would be created where user can add money in the wallet and once coupon is verified payment will be automatically deleted from the wallet. 
 
 
 ### Minimum Functionality
@@ -89,35 +103,56 @@ If the project would have been continued, our next step would have been payment 
 
 ## Code Examples
 
-You will encounter roadblocks and problems while developing your project.
-Share 2-3 'problems' that your team encountered.
-Write a few sentences that describe your solution and provide a code snippet/block
-that shows your solution. Example:
+**Problem 1: When we were trying to make operations on our data from outside the onComplete we were finding it to be null.** [3]
 
-**Problem 1: We needed to detect shake events**
-
-A short description.
+```java
+db.collection("Restaurants")
+.get()
+.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+	@Override
+	public void onComplete(@NonNull Task<QuerySnapshot> task) {
+		if (task.isSuccessful()) {
+			for (QueryDocumentSnapshot document : task.getResult()) {
+	//do nothing
+	String data= task.getResult()
+			}
+		} else {
+			Log.e("Not hello", "Error getting documents.", task.getException());
+		}
+	}
+});
 ```
-// The method we implemented that solved our problem
-public void onSensorChanged(SensorEvent event) {
-    now = event.timestamp;
-    x = event.values[0];
-    y = event.values[1];
-    z = event.values[2];
+From our research we  found out that firebase functions are fully asynchronous. This means that the call always returns immediately, without blocking the code to wait for a result. The results come some time later, whenever they’re ready.So to solve this issue we had to make use of that data in the onComplete method
 
-    if (now - lastUpdate > 10) {
-        force = Math.abs(x + y + z - lastX - lastY - lastZ);
-        if (force > threshold) {
-            listener.onShake(force);
-        }
-        lastX = x;
-        lastY = y;
-        lastZ = z;
-        lastUpdate = now;
-    }
-}
+```java
+db.collection("Restaurants")
+.get()
+.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+	@Override
+	public void onComplete(@NonNull Task<QuerySnapshot> task) {
+		if (task.isSuccessful()) {
+			for (QueryDocumentSnapshot document : task.getResult()) {
+	//do nothing
+	String data= task.getResult()
+	//do something with “data”
+			}
+		} else {
+			Log.e("Not hello", "Error getting documents.", task.getException());
+		}
+	}
+});
 
-// Source: StackOverflow [3]
+```
+
+**Problem 2: While loading this by using the below code, we were getting a memoryOutOfBound Exception as the size of the image was too large.** [2]
+```java
+image.setDrawable(R.drawable.cover_img);
+```
+
+As a solution we used the Glide library that does bitmap decoding for large images and also image caching for faster loading
+
+```java
+Glide.with(context).load(R.drawable.cover_img).into(image);
 ```
 
 ## Functional Decomposition
@@ -128,25 +163,53 @@ what components belong to what part of the pattern and what their purpose is.
 
 ## High-level Organization
 
+<img src="/Images/SiteMap.png" alt="drawing" width="700"/>
+
+<img src="/Images/SiteMap2.png" alt="drawing" width="700"/>
+
 The hierarchy or site map of the application.
 This can be reused from Updates 1 and 2, updated with any changes made since then.
 
 ## Clickstreams
 
+<img src="/Images/ClickStream1.png" alt="drawing" width="300"/>
+<img src="/Images/ClickStream2.png" alt="drawing" width="300"/>
+<img src="/Images/ClickStream3.png" alt="drawing" width="300"/>
+<img src="/Images/ClickStream4.png" alt="drawing" width="300"/>
+<img src="/Images/ClickStream5.png" alt="drawing" width="300"/>
+
 A brief description of the common use cases.
 This can be reused from Updates 1 and 2, updated with any changes made since then.
 
 ## Layout
+<img src="/Images/SignUpCustomer.png" alt="drawing" width="300"/>
+<img src="/Images/LoginScreenCustomer.png" alt="drawing" width="300"/>
+<img src="/Images/CustomerHomeScreen.png" alt="drawing" width="300"/>
+<img src="/Images/CustomerRestaurantClick.png" alt="drawing" width="300"/>
+<img src="/Images/MyCoupons1.png" alt="drawing" width="300"/>
+<img src="/Images/MyCoupons2.png" alt="drawing" width="300"/>
 
-Wire-frames of all the primary views and a brief description describing what each is for.
-This can be reused from Updates 1 and 2, updated with any changes made since then.
+Restaurants
 
-## Prototypes
+<img src="/Images/RegistrationDashboard.png" alt="drawing" width="300"/>
+<img src="/Images/RestaurantsLogin.png" alt="drawing" width="300"/>
 
-If you did low-fidelity or high-fidelity prototypes, document the process here,
-including the results of your user testing. (Otherwise, delete this section.)
 
 ## Implementation
+
+<img src="/Images/CustomersSignUp.png" alt="drawing" width="200"/>
+<img src="/Images/CustomersLogin.png" alt="drawing" width="200"/>
+<img src="/Images/CustomerDashboard.png" alt="drawing" width="200"/>
+<img src="/Images/RestaurantDetails.png" alt="drawing" width="200"/>
+<img src="/Images/CallNavigationFeature.png" alt="drawing" width="200"/>
+<img src="/Images/Coupons_share.jpg" alt="drawing" width="200"/>
+<img src="/Images/MyCoupons.jpg" alt="drawing" width="200"/>
+<img src="/Images/History.jpg" alt="drawing" width="200"/>
+
+Restaurants
+
+<img src="/Images/RestaurantsDashboard.png" alt="drawing" width="200"/>
+<img src="/Images/RestaurantsAppCoupon.png" alt="drawing" width="200"/>
 
 Screenshots of all the primary views (screens) and a brief discussion of the
 interactions the user performs on the screens.
@@ -159,20 +222,20 @@ time and inclination to do so.
 
 ## Sources
 
-Use IEEE citation style. Some examples:
+[1]"zxing/zxing", GitHub, 2019. [Online]. Available: https://github.com/zxing/zxing. [Accessed: 22- Jul- 2019].
 
-[1] J. Moule, _Killer UX Design: Create User Experiences to Wow Your Visitors_. Sitepoint, 2012.
+[2]"Glide v4 : Fast and efficient image loading for Android", Bumptech.github.io, 2019. [Online]. Available: https://bumptech.github.io/glide/. [Accessed: 23- Jul- 2019].
 
-[2] _Ngspice_. (2011). [Online]. Available: http://ngspice.sourceforge.net
+[3]"Why are the Firebase APIs asynchronous?", Medium, 2019. [Online]. Available: https://medium.com/google-developers/why-are-firebase-apis-asynchronous-callbacks-promises-tasks-e037a6654a93. [Accessed: 23- Jul- 2019].
 
-[3] "Detect shaking of device in left or right direction in android?", StackOverflow.
-    https://stackoverflow.com/a/6225656 (accessed July 12, 2019).
+[4]"Dani | HD photo by Pablo Merchán Montes (@pablomerchanm) on Unsplash", Unsplash.com, 2019. [Online]. Available: https://unsplash.com/photos/Orz90t6o0e4. [Accessed: 23- Jul- 2019].
 
-What to include in your project sources:
-- Stock images
-- Design guides
-- Programming tutorials
-- Research material
-- Android libraries
-- Everything listed on the Dalhousie [*Plagiarism and Cheating*](https://www.dal.ca/dept/university_secretariat/academic-integrity/plagiarism-cheating.html)
-- Remember AC/DC *Always Cite / Don't Cheat* (see Lecture 0 for more info)
+[5]"Korean Food Bibimbap with Kimchi | HD photo by Jakub Kapusnak (@foodiesfeed) on Unsplash", Unsplash.com, 2019. [Online]. Available: https://unsplash.com/photos/4f4YZfDMLeU. [Accessed: 23- Jul- 2019].
+
+[6]"We found this coffee place in Gaia, r... | HD photo by Petr Sevcovic (@sevcovic23) on Unsplash", Unsplash.com, 2019. [Online]. Available: https://unsplash.com/photos/qE1jxYXiwOA. [Accessed: 23- Jul- 2019].
+
+[7]"Avocado and Egg Toast | HD photo by Joseph Gonzalez (@miracletwentyone) on Unsplash", Unsplash.com, 2019. [Online]. Available: https://unsplash.com/photos/fdlZBWIP0aM. [Accessed: 23- Jul- 2019].
+
+[8]"Build your own hot dog | HD photo by Andersen Jensen (@andersenjensen) on Unsplash", Unsplash.com, 2019. [Online]. Available: https://unsplash.com/photos/Hk2eu3OODdg. [Accessed: 23- Jul- 2019].v4
+
+[9]"Blackboard, bar stool, furniture and chair | HD photo by Nathan Dumlao (@nate_dumlao) on Unsplash", Unsplash.com, 2019. [Online]. Available: https://unsplash.com/photos/ulPd2UCwZYk. [Accessed: 23- Jul- 2019].
