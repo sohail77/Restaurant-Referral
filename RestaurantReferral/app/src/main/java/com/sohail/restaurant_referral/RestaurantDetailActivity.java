@@ -49,22 +49,13 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Share
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //setting up the xml views
         setContentView(R.layout.activity_restaurant_detail);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fab = findViewById(R.id.fab);
-
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_36dp);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                finish();
-            }
-        });
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
         nameTxt = findViewById(R.id.nameTxt);
         descTxt = findViewById(R.id.descTxt);
         detailImg = findViewById(R.id.detailImg);
@@ -74,18 +65,31 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Share
         galleryRv=findViewById(R.id.galleryRv);
         galleryRv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
 
+        setSupportActionBar(toolbar);
 
+        //back button in toolbar
+        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                finish();
+            }
+        });
+
+        //get data from the main activity
         email = getIntent().getStringExtra("email");
         name = getIntent().getStringExtra("name");
         phone = "tel:" + getIntent().getStringExtra("phone");
         lat=getIntent().getDoubleExtra("lat",0);
         lon=getIntent().getDoubleExtra("lon",0);
         collapsingToolbar.setTitle(getIntent().getStringExtra("name"));
+
+        //glide loads images asynchronously
         Glide.with(this).load(getIntent().getStringExtra("image")).into(detailImg);
         descTxt.setText(getIntent().getStringExtra("desc"));
 
 
 
+        //get gallery images from the firebase.
         db.collection("Images").whereEqualTo("name",name)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -97,6 +101,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Share
 
                             }
 
+                            //using the data set up the gallery recycler view
                             adapter=new MenuAdapter(RestaurantDetailActivity.this,galleryList);
                             galleryRv.setAdapter(adapter);
                         }
@@ -107,6 +112,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Share
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //open a fragment that shows the email field to the user
                 ShareSheetFragment fragment = ShareSheetFragment.newInstance();
                 fragment.show(getSupportFragmentManager(), "share_sheet_fragment");
             }
@@ -115,9 +121,9 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Share
         callLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //Make phone call by using Android's Intent.ACTION_CALL
                 Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse(phone));
-
-
                 if (ActivityCompat.checkSelfPermission(RestaurantDetailActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 
                     ActivityCompat.requestPermissions(RestaurantDetailActivity.this,
@@ -133,6 +139,8 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Share
         directionLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //start directions when the direction button is clicked
                 Uri.Builder directions = new Uri.Builder()
                         .scheme("https")
                         .authority("www.google.com")
@@ -150,6 +158,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Share
 
     }
 
+    //when the permissions have been granted
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 

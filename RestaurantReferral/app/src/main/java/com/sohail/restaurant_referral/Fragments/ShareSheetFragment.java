@@ -91,54 +91,70 @@ public class ShareSheetFragment extends BottomSheetDialogFragment {
         shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                isAvailable=false;
-                if((shareEmail.getText()!=null) && (!shareEmail.getText().toString().equals(mAuth.getCurrentUser().getEmail()))){
-                    db.collection("Users")
-                            .get()
-                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        for (QueryDocumentSnapshot document : task.getResult()) {
-
-                                            if(document.getString("email").equals(shareEmail.getText().toString())){
-                                                isAvailable=true;
-                                            }
-                                        }
-
-                                        if(isAvailable) {
-                                            HashMap<String, Object> coupon = new HashMap<>();
-                                            coupon.put("code", email + "/" + mAuth.getCurrentUser().getEmail());
-                                            coupon.put("fromEmail", mAuth.getCurrentUser().getEmail());
-                                            coupon.put("toEmail", shareEmail.getText().toString());
-                                            coupon.put("place",act.name);
-                                            db2.collection("Coupons")
-                                                    .add(coupon)
-                                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                        @Override
-                                                        public void onSuccess(DocumentReference documentReference) {
-                                                            Toast.makeText(getActivity(), "Sharing Successful", Toast.LENGTH_LONG).show();
-                                                        }
-                                                    })
-                                                    .addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception e) {
-                                                            Toast.makeText(getActivity(), "Error Sharing Coupon", Toast.LENGTH_LONG).show();
-                                                        }
-                                                    });
-                                        }else{
-                                            Toast.makeText(getActivity(), "No Such User Available ", Toast.LENGTH_LONG).show();
-                                        }
-
-                                    } else {
-                                        Log.e("Not hello", "Error getting documents.", task.getException());
-                                    }
-                                }
-                            });
-                }
+              shareCoupon();
             }
         });
         return view;
+    }
+
+
+    //This method creates a coupon and adds that coupon to the firebase database so that the user to whom the coupon was shared can actually see it.
+    public void shareCoupon(){
+        isAvailable=false;
+
+        //check if the email field is empty or not and if the field is not same as the current user
+        if((shareEmail.getText()!=null) && (!shareEmail.getText().toString().equals(mAuth.getCurrentUser().getEmail()))){
+            db.collection("Users")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                    if(document.getString("email").equals(shareEmail.getText().toString())){
+                                        //check if the user is actually a valid user
+                                        isAvailable=true;
+                                    }
+                                }
+
+                                //if the details entered are of a valid user
+                                if(isAvailable) {
+                                    HashMap<String, Object> coupon = new HashMap<>();
+                                    coupon.put("code", email + "/" + mAuth.getCurrentUser().getEmail());
+                                    coupon.put("fromEmail", mAuth.getCurrentUser().getEmail());
+                                    coupon.put("isUsed",false);
+                                    coupon.put("toEmail", shareEmail.getText().toString());
+                                    coupon.put("place",act.name);
+
+                                    //add a coupon in the data base
+                                    db2.collection("Coupons")
+                                            .add(coupon)
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    Toast.makeText(getActivity(), "Sharing Successful", Toast.LENGTH_LONG).show();
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(getActivity(), "Error Sharing Coupon", Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+                                }else{
+                                    //if the user is not valid
+                                    Toast.makeText(getActivity(), "No Such User Available ", Toast.LENGTH_LONG).show();
+                                }
+
+                            } else {
+                                Log.e("Not hello", "Error getting documents.", task.getException());
+                            }
+                        }
+                    });
+        }else{
+            Toast.makeText(getActivity(),"Email cannot be empty or contain your email address",Toast.LENGTH_LONG).show();
+        }
     }
 
 

@@ -1,6 +1,9 @@
 package com.sohail.restaurant_referral.Models;
 
 public class RestaurantModel {
+
+    //This is a model class for Restaurant.
+    //Below variables display all the attributes present in the Restaurant data.
     String name,description,imageUrl,phone,email;
     Double lat,lon;
 

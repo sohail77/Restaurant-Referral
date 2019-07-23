@@ -16,5 +16,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.progresscolor">
+        <item name="colorAccent">#000000</item>
+    </style>
+
 
 </resources>
