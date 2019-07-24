@@ -148,7 +148,7 @@ public class ShareSheetFragment extends BottomSheetDialogFragment {
                                 }
 
                             } else {
-                                Log.e("Not hello", "Error getting documents.", task.getException());
+                                Toast.makeText(getActivity(), "Error sharing the code ", Toast.LENGTH_LONG).show();
                             }
                         }
                     });
