@@ -1,3 +1,47 @@
+# Table of contents
+
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Referred](#referred)
+	- [Group members](#group-members)
+	- [Description](#description)
+	- [Users](#users)
+	- [Features](#features)
+		- [Features for Restaurant Application](#features-for-restaurant-application)
+		- [Features for Customer Application](#features-for-customer-application)
+	- [Libraries](#libraries)
+	- [Requirements](#requirements)
+	- [Installation Notes](#installation-notes)
+	- [Final Project Status](#final-project-status)
+	    - [Minimum Functionality](#minimum-functionality)
+	        - [Connecting to the firebase](#connecting-to-the-firebase)
+            - [Code Sharing](#code-sharing)
+            - [Call Function](#call-function)
+            - [Location Driven](#location-driven)
+    	- [Expected Functionality](#expected-functionality)
+    	    - [QR Scanner](#qR-scanner)
+    	    - [Customer Tracking](#customer-tracking)
+            - [History of coupons for the customers](#history-of-coupons-for-the-customers)
+            - [List restaurant data](#list-restaurant-data)
+    	- [Bonus Functionality](#bonus-functionality)
+    	    - [Upload photos](#upload-photos)
+            - [Login and Registration](#login-and-registration)
+    - [Code Examples](#code-examples)
+    - [Functional Decomposition](#functional-decomposition)
+    - [High-level Organization](#high-level-organization)
+	- [Clickstreams](#clickstreams)
+		- [Restaurant Detail Screen](#restaurant-detail-screen)
+		- [Coupon Sharing](#coupon-sharing)
+		- [View History](#view-history)
+		- [Logout Screen](#logout-screen)
+		- [Restaurants Dashboard](#restaurants-dashboard)
+	- [Layout](#layout)
+	- [Implementation](#implementation)
+	- [Future Work](#future-work)
+	- [Sources](#sources)
+
+<!-- /TOC -->
+
 # Referred
 
 The idea behind developing the mobile application is to provide users discounts on the bills when they visit the restaurant, based on the referral system. The more you promote a restaurant the more discount you get. The promotion includes sharing the code with your friends and relatives and when they visit the restaurant you and the person you referred to, both get some discount. In this way, the restaurant gets more customers and the user gets their discounts.
@@ -25,23 +69,17 @@ The target user base of the application is the restaurants and the users who vis
 ### Features
 
 
-Features for Restaurant Application
+#### Features for Restaurant Application
 
-- Able to validate user QR Code
-    Through this feature, restaurants would be able to validate if the user coupon is valid or not. Restaurant application would have an option to scan the QR Code. Application has inbuilt QR scanner which would open on a button click and it would validate the QR Code.
-- View the customers that came via the application
-    This feature helps the restaurant to track, how many customers came to the restaurant via the application.
-- Uploading images of the menu and items
-    This feature will allow the restaurants to upload the images of the menu and restaurant using the camera inbuilt with the application
+- Able to validate user QR Code - Through this feature, restaurants would be able to validate if the user coupon is valid or not. Restaurant application would have an option to scan the QR Code. Application has inbuilt QR scanner which would open on a button click and it would validate the QR Code.
+- View the customers that came via the application - This feature helps the restaurant to track, how many customers came to the restaurant via the application.
+- Uploading images of the menu and items - This feature will allow the restaurants to upload the images of the menu and restaurant using the camera inbuilt with the application
 
-Features for customer application
+#### Features for Customer application
 
-- Sharing the code to get the discount.
-    Allowing the users to share the code just by entering the email address. Once successfully shared, user and the user referred both will get the unique QR code for the restaurants which could be redeemed at the restaurants
-- Calling the Restaurants
-    This feature will allow the customer to place a call to the restaurants. There is a button provided which place call to the restaurant.
-- Navigation to the Restaurant
-    This feature will navigate the user to the restaurant, through the maps.
+- Sharing the code to get the discount - Allowing the users to share the code just by entering the email address. Once successfully shared, user and the user referred both will get the unique QR code for the restaurants which could be redeemed at the restaurants
+- Calling the Restaurants - This feature will allow the customer to place a call to the restaurants. There is a button provided which place call to the restaurant.
+- Navigation to the Restaurant - This feature will navigate the user to the restaurant, through the maps.
 
 ## Libraries
 
@@ -84,10 +122,10 @@ A user wallet would be created where user can add money in the wallet and once c
 
 ### Minimum Functionality
 
-- Connecting to the firebase (Completed) - connecting the application to the backend firebase database and display some data from the database on the phone.
-- Code Sharing (Completed) - QR codes will be generated based on user ID, which the user can share directly from the application, just by entering the email address.
-- Call function (Completed) - User will be able to make a call to the restaurant using the application.
-- Location driven (Completed) - Using this feature the customer can navigate to the restaurant. (This is done using the Maps API)
+- Connecting to the firebase - connecting the application to the backend firebase database and display some data from the database on the phone.
+- Code Sharing - QR codes will be generated based on user ID, which the user can share directly from the application, just by entering the email address.
+- Call function  - User will be able to make a call to the restaurant using the application.
+- Location driven  - Using this feature the customer can navigate to the restaurant. (This is done using the Maps API)
 
 ### Expected Functionality
 
@@ -163,20 +201,41 @@ what components belong to what part of the pattern and what their purpose is.
 
 ## High-level Organization
 
+### Customer Application SiteMap
+
 <img src="/Images/SiteMap.png" alt="drawing" width="700"/>
+
+### Restaurants Application SiteMap
 
 <img src="/Images/SiteMap2.png" alt="drawing" width="700"/>
 
-The hierarchy or site map of the application.
-This can be reused from Updates 1 and 2, updated with any changes made since then.
 
 ## Clickstreams
 
-<img src="/Images/ClickStream1.png" alt="drawing" width="300"/>
-<img src="/Images/ClickStream2.png" alt="drawing" width="300"/>
-<img src="/Images/ClickStream3.png" alt="drawing" width="300"/>
-<img src="/Images/ClickStream4.png" alt="drawing" width="300"/>
-<img src="/Images/ClickStream5.png" alt="drawing" width="300"/>
+### Restaurant Detail Screen
+To navigate to the Restaurant Detail Screen.
+
+<img src="/Images/ClickStream1.png" alt="drawing" width="600"/>
+
+### Coupon Sharing
+To navigate to the Coupon Sharing
+
+<img src="/Images/ClickStream2.png" alt="drawing" width="600"/>
+
+### View History
+To navigate to the view History
+
+<img src="/Images/ClickStream3.png" alt="drawing" width="600"/>
+
+### Logout Screen
+To navigate to the Logout Screen
+
+<img src="/Images/ClickStream4.png" alt="drawing" width="600"/>
+
+### Restaurants Dashboard
+To navigate to the Restaurants Dashboard
+
+<img src="/Images/ClickStream5.png" alt="drawing" width="600"/>
 
 A brief description of the common use cases.
 This can be reused from Updates 1 and 2, updated with any changes made since then.
@@ -197,18 +256,62 @@ Restaurants
 
 ## Implementation
 
+### Customers Sign Up
+
+This is the page from where users can login into the application
+
 <img src="/Images/CustomersSignUp.png" alt="drawing" width="200"/>
+
+### Customers Login
+
+This is the page from customers can login into the application
+
 <img src="/Images/CustomersLogin.png" alt="drawing" width="200"/>
+
+### Customer Dashboard
+
+This is the Dashboard for the Customer. 
+
 <img src="/Images/CustomerDashboard.png" alt="drawing" width="200"/>
+
+### Restaurant Details
+
+This is the page where all the Restaurants Details are displayed. Apart from that there is option to
+navigate to the Restaurant Details Screen
+
 <img src="/Images/RestaurantDetails.png" alt="drawing" width="200"/>
+
+### Call and Navigation Feature
+
+This page allows the user to make call to the restaurants.
+This page also allows the user to Navigate to the restaurants.
+
 <img src="/Images/CallNavigationFeature.png" alt="drawing" width="200"/>
+
+### Coupons Sharing
+
+This page allows the user to share the coupons to the other user.
+
 <img src="/Images/Coupons_share.jpg" alt="drawing" width="200"/>
+
+### MyCoupons
+
+This is the page from where user can view the coupons, the user has. 
+
 <img src="/Images/MyCoupons.jpg" alt="drawing" width="200"/>
+
+### History
+
+This is the page where user can view the used coupons.
+
 <img src="/Images/History.jpg" alt="drawing" width="200"/>
 
-Restaurants
+### Restaurans Dashboard
+
+This is the page from where the Restaurants could validate the user coupons and Upload menu and other restaurant related images.
 
 <img src="/Images/RestaurantsDashboard.png" alt="drawing" width="200"/>
+
 <img src="/Images/RestaurantsAppCoupon.png" alt="drawing" width="200"/>
 
 Screenshots of all the primary views (screens) and a brief discussion of the
