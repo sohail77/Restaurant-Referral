@@ -34,7 +34,7 @@
 
 # Referred
 
-The idea behind developing this mobile application is to provide the users with discounts on the bills when they visit the restaurant, based on the referral system. The more you promote a restaurant the more discount you get. The promotion includes sharing the code with your friends and relatives. When the person who received the coupon, visits the restaurant he/she get a discount. In this way, the restaurant gets more customers and the users get their discounts.
+The idea behind developing this mobile application is to provide the users with discounts on the bills when they visit the restaurant, based on the referral system. The more you promote a restaurant the more discount you get. The promotion includes sharing the code with your friends and relatives. When the person who received the coupon, visits the restaurant he/she gets a discount. In this way, the restaurant gets more customers and the users get their discounts.
 
 ## Group members
 
@@ -45,12 +45,11 @@ The idea behind developing this mobile application is to provide the users with 
 
 ## Description
 
-Due to the increasing trends of people eating in the restaurants, which in-turn intensifies the competition among the restauurants [10][11], we decided to make an application that helps both the restaurants and the customers. This application will help the restaurants to gain customers and the customers to get discounts on the dinning. We have developed two applications, one for the restaurants and the other for the customers.
+Due to the increasing trends of people eating in the restaurants, which in turn intensifies the competition among the restaurants [10][11], we decided to make an application that helps both the restaurants and the customers. This application will help the restaurants to gain customers and the customers to get discounts on the dinning. We have developed two applications, one for the restaurants and the other for the customers.
 
-The users would be able to see a list of registered restaurants of a specific region. The users will have the option to refer a restaurant to the other user using the emailId of the other user. When the user refers, the referred user get a code in the form of QR Code. When this reffered user shows the QR Code to the restaurant and if valid, discounts will be applied to the user's bill.
+The users would be able to see a list of registered restaurants of a specific region. The users will have the option to refer a restaurant to the other user using the emailId of the other user. When the user refers, the referred user get a code in the form of the QR Code. When this referred user shows the QR Code to the restaurant and if valid, discounts will be applied to the user's bill.
 
-Hence this application will benefit both the restaurant and the user, as it would decrease the advertisement cost for the restaurant and also decrease the cost of dining out for the customer . There will be different signIn and registeration process for both the customers and the restaurant. Also, the restaurants would be able to check out all the customers that came in via the app.
-
+Hence this application will benefit both the restaurant and the user, as it would decrease the advertisement cost for the restaurant and also decrease the cost of dining out for the customer . There will be different signIn and registration process for both the customers and the restaurant. Also, the restaurants would be able to check out all the customers that came in via the app.
 
 ### Users
 
@@ -112,14 +111,14 @@ A user wallet would be created where user can add money in the wallet and once c
 ### Minimum Functionality
 
 - Connecting to the firebase - connecting the application to the backend firebase database and display some data from the database on the phone.
-- Code Sharing - QR codes will be generated based on user ID, which the user can share directly from the application, just by entering the email address. (Implementation: when the user enters the email address a custom QR code is generated using that details and the details of that QRcode are stored on firebase. Now when the referred user open his application he/she can view the coupon in their account).
+- Code Sharing - QR codes will be generated based on user ID, which the user can share directly from the application, just by entering the email address. (Implementation: when the user enters the email address a custom QR code is generated using that details and the details of that QRcode are stored on firebase. Now when the referred user opens his application he/she can view the coupon in their account).
 - Call function  - User will be able to make a call to the restaurant using the application.
 - Location driven  - Using this feature the customer can start the navigation to the restaurant.
 
 ### Expected Functionality
 
 - QR Scanner (Completed) – The restaurant will be able to scan the QR Code and validate it directly from the application. (Implementation: ZXing library was used to open a QRcode scanner).
-- Customer Tracking (Completed) - This feature will allow the restaurant to keep track of the number of customers arrived. (Implementation: Every time a coupon code is verified by the restaurant, boolean is set on the backend, based on this boolean and the details of the coupon we are able to show used coupons only for that particular restaurant).
+- Customer Tracking (Completed) - This feature will allow the restaurant to keep track of the number of customers arrived. (Implementation: Every time coupon code is verified by the restaurant, boolean is set on the backend, based on this boolean and the details of the coupon we are able to show used coupons only for that particular restaurant).
 - History of coupons for the customers (Completed) – This feature will display all the previous coupon codes. (Implementation: this feature is implemented using the same logic as above)
 - List restaurant data (Completed) – This feature will display the list of restaurants to the user.
 
@@ -200,7 +199,7 @@ The model component represents the data-related logic of the application. This c
 
 **Models in our project**
 
-In our project we have placed all the model classes in a subdirectory named "Models" so that they are easily understandable. Our model classes represents the data that we are fetching from the website. For example, all the information that we require from the restaurant is represented in the "RestaurantModel" class. Another example will be all the information that a coupon will contain is represented using a "CouponModel" class.   
+In our project, we have placed all the model classes in a subdirectory named "Models" so that they are easily understandable. Our model classes represent the data that we are fetching from the website. For example, all the information that we require from the restaurant is represented in the "RestaurantModel" class. Another example will be all the information that a coupon will contain is represented using a "CouponModel" class.   
 
 **View**
 
@@ -208,22 +207,21 @@ This component contains all the UI component with which the user can interact.
 
 **Views in our project**
 
-In our project we have different XML layout files for each ui component.
-Some examples of these UI files are: Restaurant list item on the home-screen, layout of components (buttons, text, images etc) on different screens, etc. All the views are placed in the "layout" subdirectory which is under the "res" folder (This is the default location for all the views in android).
-
+In our project, we have different XML layout files for each UI component. 
+Some examples of these UI files are Restaurant list item on the home screen, the layout of components (buttons, text, images, etc) on different screens, etc. All the views are placed in the "layout" subdirectory which is under the "res" folder (This is the default location for all the views in android).
 **Controller**
 
-This component is responsible for processing of data. Controller takes the user inputs from the UI and processes the business logic and finally shows the result to the user.
+This component is responsible for the processing of data. The controller takes the user inputs from the UI and processes the business logic and finally shows the result to the user.
 
 **Controllers in our project**
 
-In our project we have placed all the controller files inside the parent directory. We have used Activity classes as our controller to process the data and show the output using the View and the Model classes.
+In our project, we have placed all the controller files inside the parent directory. We have used Activity classes as our controller to process the data and show the output using the View and the Model classes.
 
 Our controller classes are: MainActivity, RestaurantDetailActivity, LoginActivity, SignUpActivity, CouponsActivity, CouponHistoryActivity.
 
 **Adapters and Fragments**
 
-Apart from our MVC architecture we have segregated other logic into Adapters and Fragments. Adapters are responsible for attaching data to our custom Recycler Views. Fragments are self-contained portions of UI that reside inside an Activity. They also have their own lifecycle. We have segregated Fragments into a separate folder, as it improves the understandability and readability of the project.
+Apart from our MVC architecture, we have segregated other logic into Adapters and Fragments. Adapters are responsible for attaching data to our custom Recycler Views. Fragments are self-contained portions of UI that reside inside an Activity. They also have their own lifecycle. We have segregated Fragments into a separate folder, as it improves the understandability and readability of the project.
 
 
 ## High-level Organization
@@ -317,31 +315,31 @@ This is the login screen for the Restaurant application.
 
 ## Implementation
 
-### Customers Sign Up
+### Customers Sign Up[4]
 
 This is the screen from where the users can signUp for the application
 
 <img src="/Images/CustomersSignUp.png" alt="drawing" width="200"/>
 
-### Customers Login
+### Customers Login[4]
 
 This is the screen from  where the customers can login into the application
 
 <img src="/Images/CustomersLogin.png" alt="drawing" width="200"/>
 
-### Customer Dashboard
+### Customer Dashboard[6]
 
 This is the homescreen for the Customer.
 
 <img src="/Images/CustomerDashboard.png" alt="drawing" width="200"/>
 
-### Restaurant Details
+### Restaurant Details[6]
 
 This is the screen where the Restaurant's details are displayed.
 
 <img src="/Images/RestaurantDetails.png" alt="drawing" width="200"/>
 
-### Call and Navigation Feature
+### Call and Navigation Feature[8][9]
 
 This screen allows the user to make a call to the restaurant.
 This screen also allows the user to Navigate to the restaurant.
@@ -366,7 +364,7 @@ This is the screen where the user can view their used coupons.
 
 <img src="/Images/History.jpg" alt="drawing" width="200"/>
 
-### Restaurants Login
+### Restaurants Login[4]
 
 This is the Login screen for the Restaurant Management Application
 
